@@ -1,5 +1,5 @@
 # SRP-React
-My first step towards learning React.js as I follow along with video tutorials from online courses
+Mijn eerste stap naar het leren van React.js. Dit doe ik met behulp van video tutorials van een online cursus op Lynda.com
 
 
 ## Test
