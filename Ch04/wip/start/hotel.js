@@ -15,21 +15,64 @@ class PostForm extends React.Component {
 
     // so we don't have to type this over and over
     this.defaultType = this.typeOptions[0].key;
+
+    this.state = {
+      messageText: "",
+      messageType: this.defaultType,
+    }
+
+    this.handleTextChange = this.handleTextChange.bind(this)
+    this.handleTypeChange = this.handleTypeChange.bind(this)
+    this.postStatusUpdate = this.postStatusUpdate.bind(this)
+  }
+
+  handleTextChange(evt){
+    this.setState( {messageText: evt.target.value} )
+  }
+
+  handleTypeChange(evt){
+    this.setState( {messageType: evt.target.value} )
+  }
+
+  postStatusUpdate(evt){
+    evt.preventDefault();
+
+    var newStatus = {
+      msg: this.state.messageText,
+      type: this.state.messageType,
+      time: date.format(new Date(), "YYYY-MM-DD, HH:mm")
+    };
+
+    axios.post(this.props.apiUrl + "/post.php", newStatus).then(
+      function(response) {
+        
+        if (response.data.success) {
+          this.setState({
+            messageText:"",
+            messageType:this.defaultType
+          })
+        }
+        newStatus.id = response.data.id;
+        this.props.addStatusMessage(newStatus);
+
+      }.bind(this)
+    );
+
   }
 
   render() {
     return (
-      <form>
+      <form onSubmit={this.postStatusUpdate}>
         <h3>Post an Update</h3>
 
         <div className="field-group">
           <label htmlFor="txt-message">Message</label>
-          <textarea id="txt-message" rows="2" />
+          <textarea id="txt-message" rows="2" value={this.state.messageText} onChange={this.handleTextChange}/>
         </div>
 
         <div className="field-group">
           <label htmlFor="txt-type">Type</label>
-          <select id="txt-type">{this.typeOptions}</select>
+          <select id="txt-type" value={this.state.messageType} onChange={this.handleTypeChange}>{this.typeOptions}</select>
         </div>
 
         <div className="field-group action">
@@ -56,37 +99,24 @@ function StatusMessage(props) {
 class StatusMessageList extends React.Component {
   constructor(props) {
     super(props);
-
-    this.stubStatuses = [
-      {
-        id: 1,
-        msg:
-          "The hot tub is currently closed for maintenance.  We expect it to be back up and running within 48 hours.",
-        type: "management",
-        time: "2018-03-30, 09:15"
-      },
-      {
-        id: 2,
-        msg: "The hot tub maintenance is complete.  Please enjoy a dip!",
-        type: "management",
-        time: "2018-03-30, 17:12"
-      },
-      {
-        id: 3,
-        msg:
-          "The rice cooker is on the fritz, any fried rice dishes will require some extra time to cook.",
-        type: "dining",
-        time: "2018-04-02, 15:00"
-      }
-    ];
-
-    this.state = {
-      statuses: this.stubStatuses
-    };
   }
 
+  componentDidMount(){
+    this.retrieveStatusMessages();
+  }
+
+  retrieveStatusMessages(){
+    axios.get(`${this.props.apiUrl}get.php?delay=5`).then(function(response){
+      this.setState({
+        statuses: response.data,
+        isLoaded: true
+      })
+    }.bind(this))
+  }
+
+
   displayStatusMessages() {
-    return this.state.statuses.map(
+    return this.props.statuses.map(
       function(status) {
         return (
           <li key={status.id}>
@@ -102,7 +132,23 @@ class StatusMessageList extends React.Component {
   }
 
   render() {
-    return <ul id="status-list">{this.displayStatusMessages()}</ul>;
+    
+    if (this.props.isLoaded) {
+      return <ul id="status-list">{this.displayStatusMessages()}</ul>;
+    } else {
+      return (
+        <div id="status-list" className="loading">
+          Loading...
+          <div className="spinner">
+            <div className="bounce1" />
+            <div className="bounce2" />
+            <div className="bounce3" />
+          </div>
+        </div>
+      );
+    }
+
+    
   }
 }
 
@@ -119,18 +165,46 @@ class StatusMessageManager extends React.Component {
       pool: "Pool"
     };
 
-    this.apiUrl = "http://localhost/reactjs/status_api";
+    this.apiUrl = "http://localhost:8888/status_api/";
 
-    this.state = {};
+    this.state = {
+      statuses: [],
+      isLoaded: false
+    };
+
+    this.addStatusMessage = this.addStatusMessage.bind(this);
+  }
+
+  componentDidMount(){
+    this.retrieveStatusMessages();
+  }
+
+  addStatusMessage(status) {
+    var updatedStatuses = this.state.statuses.slice(0);
+
+    updatedStatuses.push(status);
+
+    this.setState({
+      statuses: updatedStatuses
+    });
+  }
+
+  retrieveStatusMessages(){
+    axios.get(`${this.apiUrl}get.php?delay=5`).then(function(response){
+      this.setState({
+        statuses: response.data,
+        isLoaded: true
+      })
+    }.bind(this))
   }
 
   render() {
     return (
       <React.Fragment>
         <div id="post-status">
-          <PostForm messageTypes={this.messageTypes} />
+          <PostForm messageTypes={this.messageTypes} apiUrl={this.apiUrl} addStatusMessage={this.addStatusMessage} />
         </div>
-        <StatusMessageList messageTypes={this.messageTypes} />
+        <StatusMessageList messageTypes={this.messageTypes} statuses={this.state.statuses} isLoaded={this.state.isLoaded}/>
       </React.Fragment>
     );
   }

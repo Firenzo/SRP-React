@@ -6,7 +6,7 @@
 
 // Modify with your MySQL connection details
 $connection = [];
-$connection['host'] = 'localhost';
+$connection['host'] = 'localhost:8889';
 $connection['user'] = 'root';
 $connection['pass'] = 'root';
 $connection['name'] = 'status_api';

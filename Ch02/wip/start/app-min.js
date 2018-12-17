@@ -1,0 +1,1 @@
+!function(){"use strict";function t(e){return React.createElement("img",{src:"../../../assets/red.jpg",alt:"product image"})}function e(e){return React.createElement("div",{className:"customizer"},React.createElement("div",{className:"product-image"},React.createElement(t)))}ReactDOM.render(React.createElement(e),document.getElementById("react-root"))}();

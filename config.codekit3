@@ -81,6 +81,16 @@
 		"oF": 0,
 		"oS": 3
 		},
+	"/assets/directory-min.css": {
+		"aP": 1,
+		"bl": 0,
+		"ft": 16,
+		"ma": 0,
+		"oA": 0,
+		"oAP": "/assets/directory-min-min.css",
+		"oF": 0,
+		"oS": 3
+		},
 	"/assets/directory.css": {
 		"aP": 1,
 		"bl": 0,
@@ -727,15 +737,35 @@
 		"oAP": "/Ch02/index.html",
 		"oF": 0
 		},
+	"/Ch02/wip/start/app old.js": {
+		"ft": 64,
+		"ma": 0,
+		"mi": 1,
+		"oA": 0,
+		"oAP": "/Ch02/wip/start/app old-min.js",
+		"oF": 0,
+		"sC": 3,
+		"tS": 0
+		},
+	"/Ch02/wip/start/app-min.js": {
+		"ft": 64,
+		"ma": 0,
+		"mi": 1,
+		"oA": 0,
+		"oAP": "/Ch02/wip/start/app-min-min.js",
+		"oF": 0,
+		"sC": 3,
+		"tS": 0
+		},
 	"/Ch02/wip/start/app.js": {
 		"ft": 64,
 		"ma": 0,
 		"mi": 1,
 		"oA": 0,
 		"oAP": "/Ch02/wip/start/app-min.js",
-		"oF": 0,
+		"oF": 1,
 		"sC": 3,
-		"tS": 0
+		"tS": 1
 		},
 	"/Ch02/wip/start/index.html": {
 		"cB": 0,
@@ -1543,15 +1573,25 @@
 		"oAP": "/Ch03/index.html",
 		"oF": 0
 		},
-	"/Ch03/wip/start/directory.js": {
+	"/Ch03/wip/start/directory-min.js": {
 		"ft": 64,
 		"ma": 0,
 		"mi": 1,
 		"oA": 0,
-		"oAP": "/Ch03/wip/start/directory-min.js",
+		"oAP": "/Ch03/wip/start/directory-min-min.js",
 		"oF": 0,
 		"sC": 3,
 		"tS": 0
+		},
+	"/Ch03/wip/start/directory.js": {
+		"ft": 64,
+		"ma": 0,
+		"mi": 0,
+		"oA": 0,
+		"oAP": "/Ch03/wip/start/directory-min.js",
+		"oF": 1,
+		"sC": 3,
+		"tS": 1
 		},
 	"/Ch03/wip/start/index.html": {
 		"cB": 0,
@@ -2169,12 +2209,12 @@
 	"/Ch04/wip/start/hotel.js": {
 		"ft": 64,
 		"ma": 0,
-		"mi": 1,
+		"mi": 0,
 		"oA": 0,
-		"oAP": "/Ch04/wip/start/hotel-min.js",
-		"oF": 0,
+		"oAP": "/Ch04/wip/start/hotel-dist.js",
+		"oF": 2,
 		"sC": 3,
-		"tS": 0
+		"tS": 1
 		},
 	"/Ch04/wip/start/index.html": {
 		"cB": 0,
@@ -4544,6 +4584,13 @@
 		"oO": 0,
 		"oS": 1
 		},
+	"/README.html": {
+		"cB": 0,
+		"ft": 8192,
+		"oA": 0,
+		"oAP": "/README.html",
+		"oF": 0
+		},
 	"/README.md": {
 		"cB": 0,
 		"cS": 0,
@@ -4605,7 +4652,7 @@
 "projectAttributes": {
 	"creationDate": 566224014.95334697,
 	"displayValue": "SRP-React",
-	"displayValueWasSetByUser": 0,
+	"displayValueWasSetByUser": 1,
 	"iconImageName": "meme-grumpy",
 	"iconImageWasSetByUser": 0
 	},
@@ -4615,7 +4662,7 @@
 	"animateCSSInjections": 1,
 	"autoBuildNewItems": 1,
 	"autoprefixerEnableIEGrid": 0,
-	"babel7PresetType": 1,
+	"babel7PresetType": 2,
 	"babelAllowRCFiles": 0,
 	"babelAuxiliaryCommentAfter": "",
 	"babelAuxiliaryCommentBefore": "",
@@ -6015,7 +6062,7 @@
 	"externalServerAddress": "http://localhost:8888",
 	"gitIgnoreBuildFolder": 1,
 	"hideConfigFile": 0,
-	"jsCheckerReservedNamesString": "",
+	"jsCheckerReservedNamesString": "React, ReactDOM",
 	"jsHintFlags2": {
 		"asi": {
 			"active": 0,

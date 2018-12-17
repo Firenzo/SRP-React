@@ -11,6 +11,7 @@
     "babel-standalone": "^6.26.0",
     "create-react-class": "^15.6.2",
     "date-and-time": "^0.6.1",
+    "mysql": "^2.16.0",
     "react": "^16.2.0",
     "react-aria-menubutton": "^5.1.0",
     "react-dom": "^16.2.0",
