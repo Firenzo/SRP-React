@@ -46,7 +46,7 @@ in je ```app.js``` maak je een IIFE (Immediately Invoked Function Expression) Wa
 })();
 
 ```
-### Element aanmaken
+## Element aanmaken
 Als eerst begin je met het maken van een element die je wil laten verschijnen op de pagina. Dit doe je met ```React.createElement()```. Deze functie neemt **3 argumenten:**
 
 1. Type element
