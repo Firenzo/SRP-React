@@ -36,7 +36,7 @@ Vervolgens maak je in je HTML een ```div``` met een id aan op de plek waar jij w
 <div id="react-root"></div>
 ```
 
-in je ```app.js``` maak je een IIFE (Immediately Invoked Function Expression)
+in je ```app.js``` maak je een IIFE (Immediately Invoked Function Expression) Waarin alle code komt.
 
 ```Javascript
 (function() {
@@ -46,7 +46,7 @@ in je ```app.js``` maak je een IIFE (Immediately Invoked Function Expression)
 })();
 
 ```
-
+### Element aanmaken
 Als eerst begin je met het maken van een element die je wil laten verschijnen op de pagina. Dit doe je met ```React.createElement()```. Deze functie neemt **3 argumenten:**
 
 1. Type element
