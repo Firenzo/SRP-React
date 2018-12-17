@@ -39,6 +39,54 @@
 <pre><code class="HTML">&lt;script src=&quot;app.js&quot;&gt;&lt;/script&gt;
 </code></pre>
 
+<p>Vervolgens maak je in je HTML een <code>div</code> met een id aan op de plek waar jij wil dat React wordt toegepast.</p>
+
+<pre><code class="HTML">&lt;div id=&quot;react-root&quot;&gt;&lt;/div&gt;
+</code></pre>
+
+<p>in je <code>app.js</code> maak je een IIFE (Immediately Invoked Function Expression)</p>
+
+<pre><code class="Javascript">(function() {
+  &quot;use strict&quot;;
+  
+  
+})();
+
+</code></pre>
+
+<p>Als eerst begin je met het maken van een element die je wil laten verschijnen op de pagina. Dit doe je met <code>React.createElement()</code>. Deze functie neemt 3 argumenten:</p>
+
+<ol>
+<li>Type element</li>
+<li>Attributen als Object</li>
+<li>Wat er in het element komt tussen <code>&lt;div&gt;</code> en <code>&lt;/div&gt;</code></li>
+</ol>
+
+<p>Hieronder een voorbeeld:</p>
+
+<pre><code class="Javascript">var ProductCustomizer = React.createElement('div', {className: &quot;customizer&quot;}, &quot;Product customizer will go here&quot; )
+</code></pre>
+
+<p><strong>LET OP:</strong> Als je attributen meegeeft moeten deze de naam hebben zoals die in de DOM API staan. <code>class</code> is bijvoorbeeld iets wat je in html zou typen, maar in de DOM API is dit <code>className</code>.
+<a href="https://reactjs.org/docs/dom-elements.html">https://reactjs.org/docs/dom-elements.html</a></p>
+
+<p>Onder deze functie voeg je de <code>ReactDOM.render()</code> functie toe. Deze functie neemt 2 argumenten:</p>
+
+<ol>
+<li>Het element dat gerenderd moet worden.</li>
+<li>De plek waar het gerenderd moet worden.</li>
+</ol>
+
+<pre><code class="Javascript">var ProductCustomizer = React.createElement(
+	'div',
+	{className: &quot;customizer&quot;},
+	&quot;Product customizer will go here&quot;
+)
+
+ReactDOM.render( ProductCustomizer , document.getElementById(&quot;react-root&quot;));
+
+</code></pre>
+
 </body>
 </html>
 
