@@ -8,15 +8,16 @@ Ik heb wel vaker gehoord over React.js, maar ik heb er nooit echt iets mee gedaa
 React is een Javascript Library om User Interfaces mee te bouwen. React kun je toepassen in verschillende omgevingen. Hiervoor heb je **ReactDOM**, **ReactDOMServer** en **React Native**.
 
 * **ReactDOM** voor React in de browser
-* **ReactDOMServer**voor React op de server
+* **ReactDOMServer** voor React op de server
 * **React Native** voor het bouwen van Native apps
 
-In deze cursus wordt de focus vooral gelegd op de browser, dus wordt ReactDOM gebruikt.
+In deze cursus wordt de focus vooral gelegd op de browser, dus wordt **ReactDOM** gebruikt.
 
 Je kunt ervoor kiezen om React te gebruiken in nieuwe projecten, maar je kunt het ook prima toepassen in bestaande projecten.
 
+
 ##React Installeren
-Om React te installeren in een bestaand project kun je simpelweg de benodigde script tags in je HTML bestand toevoegen op deze volgorde.
+Om React te installeren in een project kun je simpelweg de benodigde script tags in je HTML bestand toevoegen op deze volgorde.
 
 ```HTML
 <script crossorigin src="https://unpkg.com/react@16/umd/react.development.js"></script>
