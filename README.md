@@ -47,7 +47,7 @@ in je ```app.js``` maak je een IIFE (Immediately Invoked Function Expression)
 
 ```
 
-Als eerst begin je met het maken van een element die je wil laten verschijnen op de pagina. Dit doe je met ```React.createElement()```. Deze functie neemt 3 argumenten:
+Als eerst begin je met het maken van een element die je wil laten verschijnen op de pagina. Dit doe je met ```React.createElement()```. Deze functie neemt **3 argumenten:**
 
 1. Type element
 2. Attributen als Object
@@ -62,7 +62,7 @@ var ProductCustomizer = React.createElement('div', {className: "customizer"}, "P
 [https://reactjs.org/docs/dom-elements.html](https://reactjs.org/docs/dom-elements.html)
 
 
-Onder deze functie voeg je de ```ReactDOM.render()``` functie toe. Deze functie neemt 2 argumenten: 
+Onder deze functie voeg je de ```ReactDOM.render()``` functie toe. Deze functie neemt **2 argumenten:** 
 
 1. Het element dat gerenderd moet worden.
 2. De plek waar het gerenderd moet worden.
