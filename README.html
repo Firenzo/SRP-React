@@ -217,7 +217,9 @@ function ProductCustomizer(props) {
 
 <h1 id="jsxes6babel">JSX, ES6 &amp; Babel</h1>
 
-<p>Om nog een element aan te maken in een element, zul je in je <code>React.createElement()</code> functie deze zelfde functie nog een keer moeten aanroepen. Dat is nogal veel werk en het kan snel onoverzichtelijk worden. Gelukkig is er JSX! Dit is een extensie van Javascript die het mogelijk maakt om <strong>HTML code te gebruiken in Javascript.</strong> Hierdoor hoef je <code>React.createElement()</code> niet steeds opnieuw aan te roepen. JSX wordt alleen niet ondersteund door browsers, dus zal deze code omgeschreven moeten worden naar iets dat de browser wel begrijpt. Dit doet Babel voor je. Babel is een transpiler die ervoor zorgt dat de code weer wordt omgeschreven in iets wat de browser begrijpt. JSX wordt dus weer gewoon Javascript. Babel werkt ook voor ES6.</p>
+<p>Om binnen een element nog een element aan te maken, zul je dus opnieuw de functie <code>React.createElement()</code> moeten aanroepen. Dat is nogal veel werk en het kan snel onoverzichtelijk worden.</p>
+
+<p>Gelukkig is er JSX! Dit is een extensie van Javascript die het mogelijk maakt om <strong>HTML code te gebruiken in Javascript.</strong> Hierdoor hoef je <code>React.createElement()</code> niet steeds opnieuw aan te roepen. JSX wordt alleen niet ondersteund door browsers, dus zal deze code omgeschreven moeten worden naar iets dat de browser wel begrijpt. Dit doet Babel voor je. Babel is een transpiler die ervoor zorgt dat de code weer wordt omgeschreven in iets wat de browser begrijpt. JSX wordt dus weer gewoon Javascript. Babel werkt ook voor ES6.</p>
 
 <p>ES6 verwijst naar een nieuwere versie van Javascript. Deze versie heeft een uitgebreidere syntax en zorgt dus voor meer mogelijkheden. Zo kun je bijvoorbeeld nu gemakkelijk classes aanmaken, wat handig is, omdat React hier ook gebruik van maakt.</p>
 
@@ -231,7 +233,7 @@ function ProductCustomizer(props) {
 <figcaption>codekit</figcaption>
 </figure>
 
-<p>Als je gebruik maakt van Babel hoef je geen <code>React.createElement</code> meer te gebruiken. Je kunt nu simpelweg een functie schrijven die HTML code teruggeeft. Deze HTML code moet wel tussen <code>()</code> haakjes staan. Daarnaast kun je maar 1 element teruggeven. Er mogen wel meerdere elementen binnen dit element zitten.</p>
+<p>Als je gebruik maakt van Babel hoef je geen <code>React.createElement</code> meer te gebruiken. Je kunt nu simpelweg een functie schrijven die HTML code teruggeeft. Deze HTML code moet wel tussen <code>()</code> haakjes staan. Daarnaast kun je maar 1 element teruggeven. Dit element mag wel children hebben.</p>
 
 <p>voorbeeld:</p>
 
@@ -246,6 +248,33 @@ function ProductCustomizer(props) {
 		&lt;/div&gt;
 	)
 }
+</code></pre>
+
+<p>Als je toch meerdere elementen wilt toevoegen die geen children van elkaar zijn, kun je dit op verschillende manieren oplossen. Je kunt net zoals in HTML de elementen samenvoegen in een <code>&lt;div&gt;</code>. Ook kun je <strong><code>&lt;React.Fragment&gt;</code></strong> gebruiken. Dit gebruik je precies op dezelfde manier als een <code>&lt;div&gt;</code> tag, maar alleen wordt deze tag niet gerenderd.</p>
+
+<pre><code class="JSX">function MyComponent(props){
+	return (
+		&lt;React.Fragment&gt;
+			&lt;div&gt;Child 1&lt;/div&gt;
+			&lt;div&gt;Child 2&lt;/div&gt;
+			&lt;div&gt;Child 3&lt;/div&gt;
+		&lt;/React.Fragment&gt;
+	)
+}
+</code></pre>
+
+<h2 id="verwijzennaarcomponenteninjsx">Verwijzen naar componenten in JSX</h2>
+
+<p>Verwijzen naar een component kun je in JSX ook heel makkelijk doen. Dit doe je door de naam van de component als &#8220;HTML&#8221; tag te typen. Dit ziet er als volgt uit:</p>
+
+<pre><code>function MyComponent(){
+	return(
+		&lt;div&gt;
+			&lt;MyOtherComponent /&gt;
+		&lt;/div&gt;
+	)
+}
+
 </code></pre>
 
 <h1 id="stateenprops">State en Props</h1>

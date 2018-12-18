@@ -207,7 +207,9 @@ De component```ProductCustomizer``` zal er volgens de virtual DOM van React als 
 
 
 # JSX, ES6 & Babel
-Om nog een element aan te maken in een element, zul je in je ```React.createElement()``` functie deze zelfde functie nog een keer moeten aanroepen. Dat is nogal veel werk en het kan snel onoverzichtelijk worden. Gelukkig is er JSX! Dit is een extensie van Javascript die het mogelijk maakt om **HTML code te gebruiken in Javascript.** Hierdoor hoef je ```React.createElement()``` niet steeds opnieuw aan te roepen. JSX wordt alleen niet ondersteund door browsers, dus zal deze code omgeschreven moeten worden naar iets dat de browser wel begrijpt. Dit doet Babel voor je. Babel is een transpiler die ervoor zorgt dat de code weer wordt omgeschreven in iets wat de browser begrijpt. JSX wordt dus weer gewoon Javascript. Babel werkt ook voor ES6.
+Om binnen een element nog een element aan te maken, zul je dus opnieuw de functie ```React.createElement()``` moeten aanroepen. Dat is nogal veel werk en het kan snel onoverzichtelijk worden. 
+
+Gelukkig is er JSX! Dit is een extensie van Javascript die het mogelijk maakt om **HTML code te gebruiken in Javascript.** Hierdoor hoef je ```React.createElement()``` niet steeds opnieuw aan te roepen. JSX wordt alleen niet ondersteund door browsers, dus zal deze code omgeschreven moeten worden naar iets dat de browser wel begrijpt. Dit doet Babel voor je. Babel is een transpiler die ervoor zorgt dat de code weer wordt omgeschreven in iets wat de browser begrijpt. JSX wordt dus weer gewoon Javascript. Babel werkt ook voor ES6.
 
 ES6 verwijst naar een nieuwere versie van Javascript. Deze versie heeft een uitgebreidere syntax en zorgt dus voor meer mogelijkheden. Zo kun je bijvoorbeeld nu gemakkelijk classes aanmaken, wat handig is, omdat React hier ook gebruik van maakt.
 
@@ -220,7 +222,7 @@ Om Babel te gebruiken, kun je een programma zoals Prepros of Codekit gebruiken. 
 ![codekit](documentatie-assets/codekit-babel.jpg "codekit")
 
 
-Als je gebruik maakt van Babel hoef je geen ```React.createElement``` meer te gebruiken. Je kunt nu simpelweg een functie schrijven die HTML code teruggeeft. Deze HTML code moet wel tussen ```()``` haakjes staan. Daarnaast kun je maar 1 element teruggeven. Er mogen wel meerdere elementen binnen dit element zitten.
+Als je gebruik maakt van Babel hoef je geen ```React.createElement``` meer te gebruiken. Je kunt nu simpelweg een functie schrijven die HTML code teruggeeft. Deze HTML code moet wel tussen ```()``` haakjes staan. Daarnaast kun je maar 1 element teruggeven. Dit element mag wel children hebben.
 
 
 voorbeeld:
@@ -237,6 +239,35 @@ function MyComponent(props){
 		</div>
 	)
 }
+```
+
+Als je toch meerdere elementen wilt toevoegen die geen children van elkaar zijn, kun je dit op verschillende manieren oplossen. Je kunt net zoals in HTML de elementen samenvoegen in een ```<div>```. Ook kun je **```<React.Fragment>```** gebruiken. Dit gebruik je precies op dezelfde manier als een ```<div>``` tag, maar alleen wordt deze tag niet gerenderd.
+
+```JSX
+function MyComponent(props){
+	return (
+		<React.Fragment>
+			<div>Child 1</div>
+			<div>Child 2</div>
+			<div>Child 3</div>
+		</React.Fragment>
+	)
+}
+```
+
+## Verwijzen naar componenten in JSX
+
+Verwijzen naar een component kun je in JSX ook heel makkelijk doen. Dit doe je door de naam van de component als "HTML" tag te typen. Dit ziet er als volgt uit:
+
+```
+function MyComponent(){
+	return(
+		<div>
+			<MyOtherComponent />
+		</div>
+	)
+}
+
 ```
 
 
