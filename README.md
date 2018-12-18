@@ -259,7 +259,7 @@ function MyComponent(props){
 
 Verwijzen naar een component kun je in JSX ook heel makkelijk doen. Dit doe je door de naam van de component als "HTML" tag te typen. Dit ziet er als volgt uit:
 
-```
+```JSX
 function MyComponent(){
 	return(
 		<div>
