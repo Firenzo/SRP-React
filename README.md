@@ -83,7 +83,7 @@ Componenten zijn de bouwstenen van een User Interface. De componenten bevatten e
 
 ## Het bepalen van componenten:
 
-Bij het opstellen van een webpagina met behulp van componenten is het belangrijk dat je eerst goed kijkt welke componenten er gebruikt moeten worden. Daarnaast moet je ook bepalen welke data er gebruikt wordt en in welk component deze data moet worden opgeslagen. Dit is belangrijk omdat data in React alleen maar doorgegeven kan worden van parent naar child en niet andersom.
+Bij het opstellen van een webpagina met behulp van componenten is het belangrijk dat je eerst goed kijkt welke componenten er gebruikt moeten worden. Daarnaast moet je ook bepalen welke data er gebruikt wordt en in welk component deze data moet worden opgeslagen. Dit is belangrijk, omdat **data in React alleen maar doorgegeven kan worden van parent naar child** en niet andersom.
 
 Hieronder een voorbeeld van een webpagina. Op het moment dat de gebruiker een andere kleur kiest, zal de afbeelding van de schoen veranderen, maar ook zullen alleen de beschikbare maten worden aangegeven in het dropdown menu voor de schoenmaat. 
 
@@ -107,10 +107,10 @@ Op het moment dat de gebruiker een andere kleur kiest moet ```<ProductImage>``` 
 
 
 ## Component aanmaken:
-Een component aanmaken doe je met behulp van een functie of een class. Functies zijn makkelijker om te maken, maar classes ondersteunen alle functies van React.
+Een component aanmaken doe je met behulp van **een functie of een class**. Functies zijn makkelijker om te maken, maar classes ondersteunen alle functies van React.
 
 ### Component als functie:
-Een component functie heeft altijd een parameter genaamd ```props```. Daarnaast moet de naam van een component functie altijd met een hoofdletter beginnen. Zo weet React het verschil tussen componenten en elementen. Ook weet de browser extensie "React Developer Tools" het verschil tussen elementen en componenten. Dit is prettiger voor debugging.
+**Een component functie heeft altijd een parameter genaamd ```props```.** Daarnaast moet de naam van een component functie altijd met een **hoofdletter** beginnen. Zo weet React het verschil tussen componenten en elementen. Ook weet de browser extensie "React Developer Tools" het verschil tussen elementen en componenten. Dit is prettiger voor debugging.
 
 ```Javascript
 function MyComponent(props){
