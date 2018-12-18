@@ -163,6 +163,58 @@ ReactDOM.render( ProductCustomizer , document.getElementById(&quot;react-root&qu
 }
 </code></pre>
 
+<h2 id="componentenincomponenten">Componenten in componenten</h2>
+
+<p>Om een element aan te maken in React gebruik je dus <code>React.createElement()</code>. Binnen een element kun je ook children toevoegen. Dit doe je door als derde argument nog een <code>React.createElement()</code> functie mee te geven.</p>
+
+<pre><code class="Javascript">function ProductCustomizer(props) {
+	return.React.createElement(
+		&quot;div&quot;,
+		{ className: &quot;customizer&quot; },
+		React.createElement(
+			&quot;div&quot;,
+			{ className: &quot;product-image&quot; },
+			&quot;image goes here&quot;
+		)
+	);
+}
+</code></pre>
+
+<p>Ook is het mogelijk om in een component een ander component toe te voegen. Hiervoor moet je eerst een ander component aanmaken. Vervolgens gebruik je <code>React.createElement(NaamVanComponent)</code>. Dit zal er als volgt uitzien:</p>
+
+<pre><code class="Javascript">function ProductImage(props) {
+	return React.createElement(&quot;img&quot;, {
+		src: &quot;../../../assets/red.jpg&quot;,
+		alt: &quot;Product image&quot;
+	});
+}
+
+function ProductCustomizer(props) {
+	return.React.createElement(
+		&quot;div&quot;,
+		{ className: &quot;customizer&quot; },
+		React.createElement(
+			&quot;div&quot;,
+			{ className: &quot;product-image&quot; },
+			React.createElement(ProductImage)
+		)
+	);
+}
+</code></pre>
+
+<p>De component<code>ProductCustomizer</code> zal er volgens de virtual DOM van React als volgt uitzien.</p>
+
+<pre><code class="HTML">&lt;ProductCustomizer&gt;
+	&lt;div class=&quot;customizer&quot;&gt;
+		&lt;div class=&quot;product-image&quot;&gt;
+			&lt;ProductImage&gt;
+				&lt;img src=&quot;../../../assets/red.jpg&quot; alt=&quot;product image&quot; /&gt;
+			&lt;/ProductImage&gt;
+		&lt;/div&gt;
+	&lt;/div&gt;
+&lt;/ProductCustomizer&gt;
+</code></pre>
+
 <h1 id="jsxes6babel">JSX, ES6 &amp; Babel</h1>
 
 <p>Om nog een element aan te maken in een element, zul je in je <code>React.createElement()</code> functie deze zelfde functie nog een keer moeten aanroepen. Dat is nogal veel werk en het kan snel onoverzichtelijk worden. Gelukkig is er JSX! Dit is een extensie van Javascript die het mogelijk maakt om <strong>HTML code te gebruiken in Javascript.</strong> Hierdoor hoef je <code>React.createElement()</code> niet steeds opnieuw aan te roepen. JSX wordt alleen niet ondersteund door browsers, dus zal deze code omgeschreven moeten worden naar iets dat de browser wel begrijpt. Dit doet Babel voor je. Babel is een transpiler die ervoor zorgt dat de code weer wordt omgeschreven in iets wat de browser begrijpt. JSX wordt dus weer gewoon Javascript. Babel werkt ook voor ES6.</p>
@@ -195,6 +247,12 @@ ReactDOM.render( ProductCustomizer , document.getElementById(&quot;react-root&qu
 	)
 }
 </code></pre>
+
+<h1 id="stateenprops">State en Props</h1>
+
+<p>Om een state mee te geven aan een Component class doe je dit&#8230;. Constructor, super, this.setState()</p>
+
+<p>data wordt doorgegeven via props</p>
 
 </body>
 </html>

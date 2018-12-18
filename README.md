@@ -148,6 +148,61 @@ class MyComponent extends React.Component {
 }
 ```
 
+## Componenten in componenten
+Om een element aan te maken in React gebruik je dus ```React.createElement()```. Binnen een element kun je ook children toevoegen. Dit doe je door als derde argument nog een ```React.createElement()``` functie mee te geven. 
+
+```Javascript
+function ProductCustomizer(props) {
+	return.React.createElement(
+		"div",
+		{ className: "customizer" },
+		React.createElement(
+			"div",
+			{ className: "product-image" },
+			"image goes here"
+		)
+	);
+}
+```
+
+Ook is het mogelijk om in een component een ander component toe te voegen. Hiervoor moet je eerst een ander component aanmaken. Vervolgens gebruik je ```React.createElement(NaamVanComponent)```. Dit zal er als volgt uitzien:
+
+
+```Javascript
+function ProductImage(props) {
+	return React.createElement("img", {
+		src: "../../../assets/red.jpg",
+		alt: "Product image"
+	});
+}
+
+function ProductCustomizer(props) {
+	return.React.createElement(
+		"div",
+		{ className: "customizer" },
+		React.createElement(
+			"div",
+			{ className: "product-image" },
+			React.createElement(ProductImage)
+		)
+	);
+}
+```
+
+De component```ProductCustomizer``` zal er volgens de virtual DOM van React als volgt uitzien.
+
+```HTML
+<ProductCustomizer>
+	<div class="customizer">
+		<div class="product-image">
+			<ProductImage>
+				<img src="../../../assets/red.jpg" alt="product image" />
+			</ProductImage>
+		</div>
+	</div>
+</ProductCustomizer>
+```
+
 
 
 
@@ -184,4 +239,9 @@ function MyComponent(props){
 }
 ```
 
+
+# State en Props
+Om een state mee te geven aan een Component class doe je dit.... Constructor, super, this.setState()
+
+data wordt doorgegeven via props
 
