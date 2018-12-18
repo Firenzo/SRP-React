@@ -25,7 +25,7 @@
 
 <p>Je kunt ervoor kiezen om React te gebruiken in nieuwe projecten, maar je kunt het ook prima toepassen in bestaande projecten.</p>
 
-<h2 id="reactinstalleren">React Installeren</h2>
+<h1 id="reactinstalleren">React Installeren</h1>
 
 <p>Om React te installeren in een project kun je simpelweg de benodigde script tags in je HTML bestand toevoegen op deze volgorde.</p>
 
@@ -54,7 +54,7 @@
 
 </code></pre>
 
-<h2 id="elementaanmaken">Element aanmaken</h2>
+<h1 id="elementaanmaken">Element aanmaken</h1>
 
 <p>Als eerst begin je met het maken van een element die je wil laten verschijnen op de pagina. Dit doe je met <code>React.createElement()</code>. Deze functie neemt <strong>3 argumenten:</strong></p>
 
@@ -89,11 +89,11 @@ ReactDOM.render( ProductCustomizer , document.getElementById(&quot;react-root&qu
 
 </code></pre>
 
-<h2 id="componenten">Componenten</h2>
+<h1 id="componenten">Componenten</h1>
 
 <p>Componenten zijn de bouwstenen van een User Interface. De componenten bevatten elementen. Dit zijn de elementen die je in HTML gebruikt.</p>
 
-<h3 id="hetbepalenvancomponenten:">Het bepalen van componenten:</h3>
+<h2 id="hetbepalenvancomponenten:">Het bepalen van componenten:</h2>
 
 <p>Bij het opstellen van een webpagina met behulp van componenten is het belangrijk dat je eerst goed kijkt welke componenten er gebruikt moeten worden. Daarnaast moet je ook bepalen welke data er gebruikt wordt en in welk component deze data moet worden opgeslagen. Dit is belangrijk omdat data in React alleen maar doorgegeven kan worden van parent naar child en niet andersom.</p>
 
@@ -121,11 +121,11 @@ ReactDOM.render( ProductCustomizer , document.getElementById(&quot;react-root&qu
 
 <p>Op het moment dat de gebruiker een andere kleur kiest moet <code>&lt;ProductImage&gt;</code> hiervan op de hoogte zijn, zodat de kleur van de schoen veranderd kan worden. Ook moet <code>&lt;ProductFilters&gt;</code> hiervan op de hoogte zijn, zodat de juiste schoenmaten weergegeven kunnen worden.</p>
 
-<h3 id="componentaanmaken:">Component aanmaken:</h3>
+<h2 id="componentaanmaken:">Component aanmaken:</h2>
 
 <p>Een component aanmaken doe je met behulp van een functie of een class. Functies zijn makkelijker om te maken, maar classes ondersteunen alle functies van React.</p>
 
-<h4 id="componentalsfunctie:">Component als functie:</h4>
+<h3 id="componentalsfunctie:">Component als functie:</h3>
 
 <p>Een component functie heeft altijd een parameter genaamd <code>props</code>. Daarnaast moet de naam van een component functie altijd met een hoofdletter beginnen. Zo weet React het verschil tussen componenten en elementen. Ook weet de browser extensie &#8220;React Developer Tools&#8221; het verschil tussen elementen en componenten. Dit is prettiger voor debugging.</p>
 
@@ -147,7 +147,7 @@ ReactDOM.render( ProductCustomizer , document.getElementById(&quot;react-root&qu
 }
 </code></pre>
 
-<h4 id="componentalsclass:">Component als class:</h4>
+<h3 id="componentalsclass:">Component als class:</h3>
 
 <p>Je kunt componenten ook als ES6 class schrijven. Dit doe je op deze manier:</p>
 
@@ -163,7 +163,7 @@ ReactDOM.render( ProductCustomizer , document.getElementById(&quot;react-root&qu
 }
 </code></pre>
 
-<h2 id="jsxes6babel">JSX, ES6 &amp; Babel</h2>
+<h1 id="jsxes6babel">JSX, ES6 &amp; Babel</h1>
 
 <p>Om nog een element aan te maken in een element, zul je in je <code>React.createElement()</code> functie deze zelfde functie nog een keer moeten aanroepen. Dat is nogal veel werk en het kan snel onoverzichtelijk worden. Gelukkig is er JSX! Dit is een extensie van Javascript die het mogelijk maakt om HTML code te gebruiken in Javascript. Hierdoor hoef je <code>React.createElement()</code> niet steeds opnieuw aan te roepen. JSX wordt alleen niet ondersteund door browsers, dus zal deze code omgeschreven moeten worden naar iets dat de browser wel begrijpt. Dit doet Babel voor je. Babel is een transpiler die ervoor zorgt dat de code weer wordt omgeschreven in iets wat de browser begrijpt. JSX wordt dus weer gewoon Javascript. Babel werkt ook voor ES6.</p>
 

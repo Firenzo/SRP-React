@@ -16,7 +16,7 @@ In deze cursus wordt de focus vooral gelegd op de browser, dus wordt **ReactDOM*
 Je kunt ervoor kiezen om React te gebruiken in nieuwe projecten, maar je kunt het ook prima toepassen in bestaande projecten.
 
 
-## React Installeren
+# React Installeren
 Om React te installeren in een project kun je simpelweg de benodigde script tags in je HTML bestand toevoegen op deze volgorde.
 
 ```HTML
@@ -46,7 +46,7 @@ in je ```app.js``` maak je een IIFE (Immediately Invoked Function Expression) Wa
 })();
 
 ```
-## Element aanmaken
+# Element aanmaken
 Als eerst begin je met het maken van een element die je wil laten verschijnen op de pagina. Dit doe je met ```React.createElement()```. Deze functie neemt **3 argumenten:**
 
 1. Type element
@@ -78,10 +78,10 @@ ReactDOM.render( ProductCustomizer , document.getElementById("react-root"));
 
 ```
 
-## Componenten
+# Componenten
 Componenten zijn de bouwstenen van een User Interface. De componenten bevatten elementen. Dit zijn de elementen die je in HTML gebruikt.
 
-### Het bepalen van componenten:
+## Het bepalen van componenten:
 
 Bij het opstellen van een webpagina met behulp van componenten is het belangrijk dat je eerst goed kijkt welke componenten er gebruikt moeten worden. Daarnaast moet je ook bepalen welke data er gebruikt wordt en in welk component deze data moet worden opgeslagen. Dit is belangrijk omdat data in React alleen maar doorgegeven kan worden van parent naar child en niet andersom.
 
@@ -106,10 +106,10 @@ Op het moment dat de gebruiker een andere kleur kiest moet ```<ProductImage>``` 
 
 
 
-### Component aanmaken:
+## Component aanmaken:
 Een component aanmaken doe je met behulp van een functie of een class. Functies zijn makkelijker om te maken, maar classes ondersteunen alle functies van React.
 
-#### Component als functie:
+### Component als functie:
 Een component functie heeft altijd een parameter genaamd ```props```. Daarnaast moet de naam van een component functie altijd met een hoofdletter beginnen. Zo weet React het verschil tussen componenten en elementen. Ook weet de browser extensie "React Developer Tools" het verschil tussen elementen en componenten. Dit is prettiger voor debugging.
 
 ```Javascript
@@ -132,7 +132,7 @@ function MyComponent(props){
 }
 ```
 
-#### Component als class:
+### Component als class:
 Je kunt componenten ook als ES6 class schrijven. Dit doe je op deze manier:
 
 ```Javascript
@@ -151,7 +151,7 @@ class MyComponent extends React.Component {
 
 
 
-## JSX, ES6 & Babel
+# JSX, ES6 & Babel
 Om nog een element aan te maken in een element, zul je in je ```React.createElement()``` functie deze zelfde functie nog een keer moeten aanroepen. Dat is nogal veel werk en het kan snel onoverzichtelijk worden. Gelukkig is er JSX! Dit is een extensie van Javascript die het mogelijk maakt om HTML code te gebruiken in Javascript. Hierdoor hoef je ```React.createElement()``` niet steeds opnieuw aan te roepen. JSX wordt alleen niet ondersteund door browsers, dus zal deze code omgeschreven moeten worden naar iets dat de browser wel begrijpt. Dit doet Babel voor je. Babel is een transpiler die ervoor zorgt dat de code weer wordt omgeschreven in iets wat de browser begrijpt. JSX wordt dus weer gewoon Javascript. Babel werkt ook voor ES6.
 
 ES6 verwijst naar een nieuwere versie van Javascript. Deze versie heeft een uitgebreidere syntax en zorgt dus voor meer mogelijkheden. Zo kun je bijvoorbeeld nu gemakkelijk classes aanmaken, wat handig is, omdat React hier ook gebruik van maakt.
