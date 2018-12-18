@@ -170,7 +170,7 @@ Als je gebruik maakt van Babel hoef je geen ```React.createElement``` meer te ge
 
 voorbeeld:
 
-```Javascript
+```JSX
 function MyComponent(props){
 	return (
 		<div className="peopleList">
