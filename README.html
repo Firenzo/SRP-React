@@ -69,7 +69,7 @@
 <pre><code class="Javascript">var ProductCustomizer = React.createElement('div', {className: &quot;customizer&quot;}, &quot;Product customizer will go here&quot; )
 </code></pre>
 
-<p><strong>LET OP:</strong> Als je attributen meegeeft moeten deze de naam hebben zoals die in de DOM API staan. <code>class</code> is bijvoorbeeld iets wat je in html zou typen, maar in de DOM API is dit <code>className</code>.
+<p><em><strong>LET OP:</strong> Als je attributen meegeeft moeten deze de naam hebben zoals die in de DOM API staan. <code>class</code> is bijvoorbeeld iets wat je in html zou typen, maar in de DOM API is dit</em> <code>className</code>.
 <a href="https://reactjs.org/docs/dom-elements.html">https://reactjs.org/docs/dom-elements.html</a></p>
 
 <p>Onder deze functie voeg je de <code>ReactDOM.render()</code> functie toe. Deze functie neemt <strong>2 argumenten:</strong></p>
@@ -87,6 +87,113 @@
 
 ReactDOM.render( ProductCustomizer , document.getElementById(&quot;react-root&quot;));
 
+</code></pre>
+
+<h2 id="componenten">Componenten</h2>
+
+<p>Componenten zijn de bouwstenen van een User Interface. De componenten bevatten elementen. Dit zijn de elementen die je in HTML gebruikt.</p>
+
+<h3 id="hetbepalenvancomponenten:">Het bepalen van componenten:</h3>
+
+<p>Bij het opstellen van een webpagina met behulp van componenten is het belangrijk dat je eerst goed kijkt welke componenten er gebruikt moeten worden. Daarnaast moet je ook bepalen welke data er gebruikt wordt en in welk component deze data moet worden opgeslagen. Dit is belangrijk omdat data in React alleen maar doorgegeven kan worden van parent naar child en niet andersom.</p>
+
+<p>Hieronder een voorbeeld van een webpagina. Op het moment dat de gebruiker een andere kleur kiest, zal de afbeelding van de schoen veranderen, maar ook zullen alleen de beschikbare maten worden aangegeven in het dropdown menu voor de schoenmaat.</p>
+
+<figure>
+<img src="documentatie-assets/shoestore.png" alt="shoe store" title="shoe store" />
+<figcaption>shoe store</figcaption>
+</figure>
+
+<p>Dit gedeelte van de webpagina zal onderverdeeld moeten worden in 3 componenten:</p>
+
+<ol>
+<li>De afbeelding</li>
+<li>De filters</li>
+<li>Een parent</li>
+</ol>
+
+<figure>
+<img src="documentatie-assets/components.jpg" alt="components" title="components" />
+<figcaption>components</figcaption>
+</figure>
+
+<p>De data van de filter opties wordt dan opgeslagen in de parent genaamd <code>&lt;ProductCustomizer&gt;</code> en deze geeft de data dan door naar de children.</p>
+
+<p>Op het moment dat de gebruiker een andere kleur kiest moet <code>&lt;ProductImage&gt;</code> hiervan op de hoogte zijn, zodat de kleur van de schoen veranderd kan worden. Ook moet <code>&lt;ProductFilters&gt;</code> hiervan op de hoogte zijn, zodat de juiste schoenmaten weergegeven kunnen worden.</p>
+
+<h3 id="componentaanmaken:">Component aanmaken:</h3>
+
+<p>Een component aanmaken doe je met behulp van een functie of een class. Functies zijn makkelijker om te maken, maar classes ondersteunen alle functies van React.</p>
+
+<h4 id="componentalsfunctie:">Component als functie:</h4>
+
+<p>Een component functie heeft altijd een parameter genaamd <code>props</code>. Daarnaast moet de naam van een component functie altijd met een hoofdletter beginnen. Zo weet React het verschil tussen componenten en elementen. Ook weet de browser extensie &#8220;React Developer Tools&#8221; het verschil tussen elementen en componenten. Dit is prettiger voor debugging.</p>
+
+<pre><code class="Javascript">function MyComponent(props){
+	//code goes here...
+}
+</code></pre>
+
+<p>Deze functie geeft een element terug. Dit doe je weer met <code>return React.createElement(..., ..., ...)</code></p>
+
+<p>voorbeeld:</p>
+
+<pre><code class="Javascript">function MyComponent(props){
+	return React.createElement(
+		'div',
+		{className: &quot;customizer&quot;},
+		&quot;Product customizer will go here&quot;
+	)
+}
+</code></pre>
+
+<h4 id="componentalsclass:">Component als class:</h4>
+
+<p>Je kunt componenten ook als ES6 class schrijven. Dit doe je op deze manier:</p>
+
+<pre><code class="Javascript">class MyComponent extends React.Component {
+
+	render(){
+		return React.createElement(
+			'div',
+			{className: &quot;customizer&quot;},
+			&quot;Product customizer will go here&quot;
+		)
+	}
+}
+</code></pre>
+
+<h2 id="jsxes6babel">JSX, ES6 &amp; Babel</h2>
+
+<p>Om nog een element aan te maken in een element, zul je in je <code>React.createElement()</code> functie deze zelfde functie nog een keer moeten aanroepen. Dat is nogal veel werk en het kan snel onoverzichtelijk worden. Gelukkig is er JSX! Dit is een extensie van Javascript die het mogelijk maakt om HTML code te gebruiken in Javascript. Hierdoor hoef je <code>React.createElement()</code> niet steeds opnieuw aan te roepen. JSX wordt alleen niet ondersteund door browsers, dus zal deze code omgeschreven moeten worden naar iets dat de browser wel begrijpt. Dit doet Babel voor je. Babel is een transpiler die ervoor zorgt dat de code weer wordt omgeschreven in iets wat de browser begrijpt. JSX wordt dus weer gewoon Javascript. Babel werkt ook voor ES6.</p>
+
+<p>ES6 verwijst naar een nieuwere versie van Javascript. Deze versie heeft een uitgebreidere syntax en zorgt dus voor meer mogelijkheden. Zo kun je bijvoorbeeld nu gemakkelijk classes aanmaken, wat handig is, omdat React hier ook gebruik van maakt.</p>
+
+<p>Om Babel te gebruiken, kun je een programma zoals Prepros of Codekit gebruiken. In dit programma kun je dan aangeven welke transpiler je wil gebruiken voor een bepaald Javascript bestand. De code wordt dan omgeschreven zodra er een wijziging is gemaakt in het bestand. De omgeschreven code komt dan in een ander bestand. in dit geval komt de code in <code>app-min.js</code>. Het is daarom ook belangrijk dat je naar dit bestand verwijst in je HTML.</p>
+
+<pre><code>&lt;script src=&quot;app-min.js&quot;&gt;&lt;/script&gt;
+</code></pre>
+
+<figure>
+<img src="documentatie-assets/codekit-babel.jpg" alt="codekit" title="codekit" />
+<figcaption>codekit</figcaption>
+</figure>
+
+<p>Als je gebruik maakt van Babel hoef je geen <code>React.createElement</code> meer te gebruiken. Je kunt nu simpelweg een functie schrijven die HTML code teruggeeft. Deze HTML code moet wel tussen <code>()</code> haakjes staan. Daarnaast kun je maar 1 element teruggeven. Er mogen wel meerdere elementen binnen dit element zitten.</p>
+
+<p>voorbeeld:</p>
+
+<pre><code class="Javascript">function MyComponent(props){
+	return (
+		&lt;div className=&quot;peopleList&quot;&gt;
+			&lt;ul&gt;
+				&lt;li&gt;Tony Hawk&lt;/li&gt;
+				&lt;li&gt;Michael Jackson&lt;/li&gt;
+				&lt;li&gt;Will Smith&lt;/li&gt;
+			&lt;/ul&gt;
+		&lt;/div&gt;
+	)
+}
 </code></pre>
 
 </body>

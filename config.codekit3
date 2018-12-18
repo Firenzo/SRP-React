@@ -2237,6 +2237,39 @@
 		"oAP": "/Ch04/wip/start/prepros-6.config",
 		"oF": 0
 		},
+	"/documentatie-assets/codekit-babel.jpg": {
+		"ft": 16384,
+		"iS": 739667,
+		"jF": 0,
+		"oA": 0,
+		"oAP": "/documentatie-assets/codekit-babel.jpg",
+		"oF": 0,
+		"oIPL": 0,
+		"opt": 1,
+		"q": 100
+		},
+	"/documentatie-assets/components.jpg": {
+		"ft": 16384,
+		"iS": 985296,
+		"jF": 0,
+		"oA": 0,
+		"oAP": "/documentatie-assets/components.jpg",
+		"oF": 0,
+		"oIPL": 0,
+		"opt": 1,
+		"q": 100
+		},
+	"/documentatie-assets/shoestore.png": {
+		"ft": 32768,
+		"iS": 1543611,
+		"oA": 0,
+		"oAP": "/documentatie-assets/shoestore.png",
+		"oF": 0,
+		"oIPL": 0,
+		"opt": 0,
+		"oT": 1,
+		"q": 100
+		},
 	"/hplussport.com/wp-content/plugins/animate-it/assets/css/animate-animo3428.css": {
 		"aP": 1,
 		"bl": 0,
