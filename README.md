@@ -3,6 +3,37 @@ Met deze SRP opdracht hoop ik mijn skills in programmeren weer naar een hoger ni
 
 Ik heb wel vaker gehoord over React.js, maar ik heb er nooit echt iets mee gedaan. Daarnaast heb ik ook nog nooit eerder met een framework gewerkt, dus vond ik dat het tijd werd om me hier toch in te gaan verdiepen. Dit wil ik doen door op Lynda.com een cursus te volgen. Bij het volgen van deze cursus hoop ik een beter beeld te krijgen wat React.js precies is en waarom bedrijven het zo prettig vinden.
 
+# De opdrachten in de cursus
+In de cursus is er gewerkt aan meerdere opdrachten. Hieronder de beschrijving van deze opdrachten en een link naar de uitgewerkte versie.
+
+### 1. Productpagina in een webshop
+In deze opdracht werd er kennisgemaakt met React. De bedoeling van deze webpagina is dat de gebruiker een schoenmaat en een kleur kan kiezen. Op het moment dat de gebruiker een schoenmaat kiest, zullen alleen nog maar de beschikbare kleuren worden weergegeven in het volgende dropdown menu. Als de gebruiker dan vervolgens een kleur kiest, zal het plaatje van de schoen veranderen, zodat de juiste kleur wordt getoond.
+
+Om dit te doen zijn er Componenten aangemaakt. Dit zijn de bouwstenen van een User Interface in React. Een van deze componenten bevat alle data bijvoorbeeld "De kleur is rood" of "De schoenmaat is 11". Dit wordt ook wel ```state``` genoemd. vervolgens is deze data doorgegeven aan andere componenten via ```props```. Door middel van event listeners weet React of de gebruiker iets heeft geselecteerd en kun je de state veranderen. Op het moment dat de state veranderd kijkt React welke elementen op de pagina opnieuw gerenderd moeten worden en doet dat dan ook.
+
+[Bekijk webpagina](https://firenzo.github.io/SRP-React/Ch02/wip/start/) 
+
+
+### 2. Een lijst met personen filteren
+
+In deze opdracht heb ik geleerd hoe je kunt werken met een filter in React. Bovenaan de pagina stonden een paar filter opties met daaronder een lijst met personen. Deze personen hebben verschillende eigenschappen. In dit geval hun beroepstitel, naam en of het een stagiair is.
+
+Als extraatje werd er met animaties gewerkt. Dit werd gedaan met ```ReactTransitionGroup```. Dit is een kleine library voor React waarmee je animaties kunt meegeven bij het verschijnen en verdwijnen van elementen.
+
+Daarnaast werd hier ook kennis gemaakt met Controlled Form Elements. Door form elementen "Controlled" te maken, bepaald React wat er moet gebeuren met de veranderingen in de Form elementen. De browser doet hier dan niets meer mee.
+
+[Bekijk webpagina](https://firenzo.github.io/SRP-React/Ch03/wip/start/) 
+
+### 3. Status updates posten in een Database
+
+In deze opdracht werden er status updates naar een database verzonden en deze werden vervolgens weer opgehaald en getoond in een lijst met de data uit de database. Deze applicatie is wel te bekijken, maar in de code wordt er naar de database verwezen met ```localhost```. Hierdoor werkt de applicatie niet tenzij de data in een lokale server wordt opgeslagen.
+
+[Bekijk video](http://sendvid.com/nl5usizv) 
+
+[Bekijk webpagina](https://firenzo.github.io/SRP-React/Ch03/wip/start/) 
+
+
+
 
 # Wat is React?
 React is een Javascript Library om User Interfaces mee te bouwen. React kun je toepassen in verschillende omgevingen. Hiervoor heb je **ReactDOM**, **ReactDOMServer** en **React Native**.
