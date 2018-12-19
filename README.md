@@ -30,7 +30,7 @@ In deze opdracht werden er status updates naar een database verzonden en deze we
 
 [Bekijk video](http://sendvid.com/nl5usizv) 
 
-[Bekijk webpagina](https://firenzo.github.io/SRP-React/Ch03/wip/start/) 
+[Bekijk webpagina](https://firenzo.github.io/SRP-React/Ch04/wip/start/) 
 
 
 
