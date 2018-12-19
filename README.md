@@ -271,8 +271,111 @@ function MyComponent(){
 ```
 
 
-# State en Props
-Om een state mee te geven aan een Component class doe je dit.... Constructor, super, this.setState()
+# Elementen renderen aan de hand van data in een array
+![shoe store](documentatie-assets/shoestore.png "shoe store")
 
-data wordt doorgegeven via props
+Op de webpagina van de schoenenwinkel staan twee dropdowns. Eentje voor de schoenmaten en de andere voor de kleur van de schoen. Het kan zijn de data hiervan afkomstig is uit een API. Hierdoor zullen in de dropdowns alleen de beschikbare schoenmaten en kleuren weergegeven worden. In deze cursus is er geen gebruik gemaakt van een API, maar dit is wel nagebootst door de data op te slaan in ```window.Inventory```.
 
+Om een lijst met de beschikbare schoenmaten te maken wil je iets hebben dat er als volgt uitziet:
+
+``` HTML
+<div class="field-group">
+	<label for="size-options">Size:</label>
+	<select name="sizeOptions" id="size-options">
+		<option>7</option>
+		<option>7.5</option>
+		<option>8</option>
+		<option>8.5</option>
+		<option>9</option>
+		<option>9.5</option>
+		<option>10</option>
+		<option>10.5</option>
+		<option>11</option>
+		<option>11.5</option>
+		<option>12</option>
+		<option>12.5</option>
+	</select>
+</div>
+```
+
+Dit kun je in React doen door een nieuw component als functie aan te maken waarbij de HTML teruggegeven wordt:
+
+```JSX
+function SizeSelector(props){
+	return (
+		<div className="field-group">
+			<label htmlFor="size-options">Size:</label>
+			<select name="sizeOptions" id="size-options">
+				<option>7</option>
+				<option>7.5</option>
+				<option>8</option>
+				<option>8.5</option>
+				<option>9</option>
+				<option>9.5</option>
+				<option>10</option>
+				<option>10.5</option>
+				<option>11</option>
+				<option>11.5</option>
+				<option>12</option>
+				<option>12.5</option>
+			</select>
+		</div>
+	)
+}
+```
+
+De ```<option>``` tags kunnen vervolgens allemaal weggelaten worden aangezien deze tags worden bepaald aan de hand van de data in ```window.Inventory```. Dit kun je doen door middel van een helper functie. Deze functie maak je aan binnen het component.
+
+Aangezien alle schoenmaten netjes in een array zitten, kunnen deze worden gegenereerd met behulp van ```map()``` functie. Deze functie neemt als argument een functie waarin verteld wordt wat er met elk item in de array moet gebeuren. Deze functie bevat ook een parameter waarvan je zelf de naam kunt bepalen. Deze parameter verwijst naar elk item van de array. In dit voorbeeld is elk item in de array een nummer, dus wordt er als parameter ```num``` gebruikt.
+
+```JSX
+window.Inventory.allSizes.map(function(num){
+	//Wat er moet gebeuren met elk item
+});
+```
+
+Voor elk item in de array moet er een ```<option>``` element worden aangemaakt met daar in het nummer uit de array. Dit doe je als volgt:
+
+```JSX
+window.Inventory.allSizes.map(function(num){
+	return(
+		<option value={num} key={num}>{num}</option>
+	)
+});
+```
+_**LET OP:** 
+
+1. _Javascript Expressions in JSX worden tussen curly brackets ```{}``` gestopt. Dit geldt dus ook voor het verwijzen naar variabelen etc._
+
+2. _Als je in React met item lists werkt, is het belangrijk dat je naast de attribuut (in dit geval ```value```) ook een ```key``` attribuut meegeeft. Met de ```key``` attribuut houdt React bij welke elementen er zijn aangemaakt en kan vervolgens uitvogelen welke er geupdate moeten worden op het moment dat een component opnieuw gerenderd wordt._
+
+3. _**De hierboven genoemde attributen heten eigenlijk geen attributen, maar props.**_
+
+
+De SizeSelector component ziet er in JSX dan als volgt uit:
+
+
+```JSX
+function SizeSelector(props){
+	
+	//Helper function
+	function sizeOptions(){
+		window.Inventory.allSizes.map(function(num){
+			return(
+				<option value={num} key={num}>{num}</option>
+			)
+		});
+	}
+
+	return (
+		<div className="field-group">
+			<label htmlFor="size-options">Size:</label>
+			<select name="sizeOptions" id="size-options">
+				
+				{sizeOptions()} //Helper function gets called
+				
+			</select>
+		</div>
+	)
+}
+```

@@ -277,11 +277,112 @@ function ProductCustomizer(props) {
 
 </code></pre>
 
-<h1 id="stateenprops">State en Props</h1>
+<h1 id="elementenrenderenaandehandvandataineenarray">Elementen renderen aan de hand van data in een array</h1>
 
-<p>Om een state mee te geven aan een Component class doe je dit&#8230;. Constructor, super, this.setState()</p>
+<figure>
+<img src="documentatie-assets/shoestore.png" alt="shoe store" title="shoe store" />
+<figcaption>shoe store</figcaption>
+</figure>
 
-<p>data wordt doorgegeven via props</p>
+<p>Op de webpagina van de schoenenwinkel staan twee dropdowns. Eentje voor de schoenmaten en de andere voor de kleur van de schoen. Het kan zijn de data hiervan afkomstig is uit een API. Hierdoor zullen in de dropdowns alleen de beschikbare schoenmaten en kleuren weergegeven worden. In deze cursus is er geen gebruik gemaakt van een API, maar dit is wel nagebootst door de data op te slaan in <code>window.Inventory</code>.</p>
+
+<p>Om een lijst met de beschikbare schoenmaten te maken wil je iets hebben dat er als volgt uitziet:</p>
+
+<pre><code class="HTML">&lt;div class=&quot;field-group&quot;&gt;
+	&lt;label for=&quot;size-options&quot;&gt;Size:&lt;/label&gt;
+	&lt;select name=&quot;sizeOptions&quot; id=&quot;size-options&quot;&gt;
+		&lt;option&gt;7&lt;/option&gt;
+		&lt;option&gt;7.5&lt;/option&gt;
+		&lt;option&gt;8&lt;/option&gt;
+		&lt;option&gt;8.5&lt;/option&gt;
+		&lt;option&gt;9&lt;/option&gt;
+		&lt;option&gt;9.5&lt;/option&gt;
+		&lt;option&gt;10&lt;/option&gt;
+		&lt;option&gt;10.5&lt;/option&gt;
+		&lt;option&gt;11&lt;/option&gt;
+		&lt;option&gt;11.5&lt;/option&gt;
+		&lt;option&gt;12&lt;/option&gt;
+		&lt;option&gt;12.5&lt;/option&gt;
+	&lt;/select&gt;
+&lt;/div&gt;
+</code></pre>
+
+<p>Dit kun je in React doen door een nieuw component als functie aan te maken waarbij de HTML teruggegeven wordt:</p>
+
+<pre><code class="JSX">function SizeSelector(props){
+	return (
+		&lt;div className=&quot;field-group&quot;&gt;
+			&lt;label htmlFor=&quot;size-options&quot;&gt;Size:&lt;/label&gt;
+			&lt;select name=&quot;sizeOptions&quot; id=&quot;size-options&quot;&gt;
+				&lt;option&gt;7&lt;/option&gt;
+				&lt;option&gt;7.5&lt;/option&gt;
+				&lt;option&gt;8&lt;/option&gt;
+				&lt;option&gt;8.5&lt;/option&gt;
+				&lt;option&gt;9&lt;/option&gt;
+				&lt;option&gt;9.5&lt;/option&gt;
+				&lt;option&gt;10&lt;/option&gt;
+				&lt;option&gt;10.5&lt;/option&gt;
+				&lt;option&gt;11&lt;/option&gt;
+				&lt;option&gt;11.5&lt;/option&gt;
+				&lt;option&gt;12&lt;/option&gt;
+				&lt;option&gt;12.5&lt;/option&gt;
+			&lt;/select&gt;
+		&lt;/div&gt;
+	)
+}
+</code></pre>
+
+<p>De <code>&lt;option&gt;</code> tags kunnen vervolgens allemaal weggelaten worden aangezien deze tags worden bepaald aan de hand van de data in <code>window.Inventory</code>. Dit kun je doen door middel van een helper functie. Deze functie maak je aan binnen het component.</p>
+
+<p>Aangezien alle schoenmaten netjes in een array zitten, kunnen deze worden gegenereerd met behulp van <code>map()</code> functie. Deze functie neemt als argument een functie waarin verteld wordt wat er met elk item in de array moet gebeuren. Deze functie bevat ook een parameter waarvan je zelf de naam kunt bepalen. Deze parameter verwijst naar elk item van de array. In dit voorbeeld is elk item in de array een nummer, dus wordt er als parameter <code>num</code> gebruikt.</p>
+
+<pre><code class="JSX">window.Inventory.allSizes.map(function(num){
+	//Wat er moet gebeuren met elk item
+});
+</code></pre>
+
+<p>Voor elk item in de array moet er een <code>&lt;option&gt;</code> element worden aangemaakt met daar in het nummer uit de array. Dit doe je als volgt:</p>
+
+<pre><code class="JSX">window.Inventory.allSizes.map(function(num){
+	return(
+		&lt;option value={num} key={num}&gt;{num}&lt;/option&gt;
+	)
+});
+</code></pre>
+
+<p>_<strong>LET OP:</strong></p>
+
+<ol>
+<li><p><em>Javascript Expressions in JSX worden tussen curly brackets <code>{}</code> gestopt. Dit geldt dus ook voor het verwijzen naar variabelen etc.</em></p></li>
+<li><p><em>Als je in React met item lists werkt, is het belangrijk dat je naast de attribuut (in dit geval <code>value</code>) ook een <code>key</code> attribuut meegeeft. Met de <code>key</code> attribuut houdt React bij welke elementen er zijn aangemaakt en kan vervolgens uitvogelen welke er geupdate moeten worden op het moment dat een component opnieuw gerenderd wordt.</em></p></li>
+<li><p><em><strong>De hierboven genoemde attributen heten eigenlijk geen attributen, maar props.</strong></em></p></li>
+</ol>
+
+<p>De SizeSelector component ziet er in JSX dan als volgt uit:</p>
+
+<pre><code class="JSX">function SizeSelector(props){
+	
+	//Helper function
+	function sizeOptions(){
+		window.Inventory.allSizes.map(function(num){
+			return(
+				&lt;option value={num} key={num}&gt;{num}&lt;/option&gt;
+			)
+		});
+	}
+
+	return (
+		&lt;div className=&quot;field-group&quot;&gt;
+			&lt;label htmlFor=&quot;size-options&quot;&gt;Size:&lt;/label&gt;
+			&lt;select name=&quot;sizeOptions&quot; id=&quot;size-options&quot;&gt;
+				
+				{sizeOptions()} //Helper function gets called
+				
+			&lt;/select&gt;
+		&lt;/div&gt;
+	)
+}
+</code></pre>
 
 </body>
 </html>
