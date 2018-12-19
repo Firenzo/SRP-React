@@ -587,6 +587,28 @@ function ProductCustomizer(props) {
   }
 </code></pre>
 
+<p>De state verander je niet direct door in de ProductCustomizer <code>this.state = ...</code> te gebruiken. Hier heeft React een functie voor. Binnen de het component ProductCustomizer, dat als class is geschreven, kun je <code>this.setState()</code> gebruiken. Deze functie neemt als argument een object waarin alle veranderingen komen. Het veranderen van de state voor de schoenmaat ziet er dan als volgt uit:</p>
+
+<pre><code class="Javascript">	this.setState({
+		size: 8
+	})
+</code></pre>
+
+<p>De <code>setState()</code> functie is een asynchrone functie. Daardoor kan het zijn dat de state nog niet is veranderd op het moment dat je een andere functie wil uitvoeren. Gelukkig neemt <code>setState()</code> ook een tweede argument aan. Dit tweede argument is een callback functie die wordt uitgevoerd op het moment dat de state daadwerkelijk is bijgewerkt.</p>
+
+<h1 id="nawoord">Nawoord</h1>
+
+<p>Door deze cursus te volgen heb ik vrij veel geleerd!
+Naast het kennismaken met React, heb ik ook gelijk een beetje kennis gemaakt met Javascript ES6 en JSX. Ik heb hiervoor nog nooit met ES6 gewerkt en dat is voor React ook niet verplicht, maar als ik de cursus die ik heb gevolgd mag geloven maakt veel van de React documentatie die online staat gebruik van ES6. Het is daarom wel handig om hier het een en ander van te weten.</p>
+
+<p>Daarnaast heb ik ook geleerd om een transpiler als Babel te gebruiken. Om dit gemakkelijk te doen heb ik gebruik gemaakt van codekit. Ik had dit programma al een tijdje geleden gekocht, maar nooit echt gebruikt. Voor het werken met React lijkt het me wel erg prettig om te gebruiken!</p>
+
+<p>Op dit moment begrijp ik voor een deel waarom zoveel bedrijven graag werken met React. Het is namelijk erg handig om te werken met componenten. De componenten kunnen bijvoorbeeld hergebruikt worden wat voor grote websites handig kan zijn. Daarnaast vind ik het ook handig dat React gebruik maakt van states. Voorheen maakte ik dit soort variabelen zelf aan, maar niet op zo&#8217;n gestructureerde manier als React dat doet. Verder vind ik het ook fijn om &#8220;HTML&#8221; te kunnen typen in combinatie Javascript.</p>
+
+<p>Ik ben erg blij dat ik deze cursus heb gevolgd op Lynda.com over het werken met React. De uitleg was vrij simpel en ik kon alles redelijk goed volgen. In het begin vond ik het nog vrij ingewikkeld om met React te werken, maar dit kwam vooral omdat React nog nieuw voor mij was. Het werken met event listeners die de state moeten veranderen in een parent component vond ik het lastigst, maar gelukkig begrijp ik dit nu wel. Na een paar keer nauwkeurig naar de code te kijken, kon ik toch achterhalen wat er precies gebeurde.</p>
+
+<p>Ik denk dat ik nog veel kan leren over React door deze library bijvoorbeeld toe te passen in mijn eigen projecten. Dit is dan ook iets wat ik met veel plezier zou doen!</p>
+
 </body>
 </html>
 
