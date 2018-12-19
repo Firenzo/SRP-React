@@ -298,7 +298,7 @@ Om een lijst met de beschikbare schoenmaten te maken wil je iets hebben dat er a
 </div>
 ```
 
-Dit kun je in React doen door een nieuw component als functie aan te maken waarbij de HTML teruggegeven wordt:
+Dit kun je in React doen door een nieuw **component als functie** aan te maken waarbij de HTML teruggegeven wordt:
 
 ```JSX
 function SizeSelector(props){
