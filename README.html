@@ -334,9 +334,9 @@ function ProductCustomizer(props) {
 
 <p>De <code>&lt;option&gt;</code> tags kunnen vervolgens allemaal weggelaten worden aangezien deze tags worden bepaald aan de hand van de data in <code>window.Inventory</code>. Dit kun je doen door middel van een helper functie. Deze functie maak je aan binnen het component.</p>
 
-<p>Aangezien alle schoenmaten netjes in een array zitten, kunnen deze worden gegenereerd met behulp van <code>map()</code> functie. Deze functie neemt als argument een functie waarin verteld wordt wat er met elk item in de array moet gebeuren. Deze functie bevat ook een parameter waarvan je zelf de naam kunt bepalen. Deze parameter verwijst naar elk item van de array. In dit voorbeeld is elk item in de array een nummer, dus wordt er als parameter <code>num</code> gebruikt.</p>
+<p>Aangezien alle schoenmaten netjes in een array zitten, kunnen deze worden gegenereerd met behulp van de <code>map()</code> functie. Deze functie neemt als argument een functie waarin verteld wordt wat er met elk item in de array moet gebeuren. Deze functie bevat ook een parameter waarvan je zelf de naam kunt bepalen. Deze parameter verwijst naar elk item van de array. In dit voorbeeld is elk item in de array een nummer, dus wordt er als parameter <code>num</code> gebruikt.</p>
 
-<pre><code class="JSX">window.Inventory.allSizes.map(function(num){
+<pre><code class="Javascript">window.Inventory.allSizes.map(function(num){
 	//Wat er moet gebeuren met elk item
 });
 </code></pre>
@@ -358,7 +358,7 @@ function ProductCustomizer(props) {
 <li><p><em><strong>De hierboven genoemde attributen heten eigenlijk geen attributen, maar props.</strong></em></p></li>
 </ol>
 
-<p>De SizeSelector component ziet er in JSX dan als volgt uit:</p>
+<p>De <code>SizeSelector</code> component ziet er in JSX dan als volgt uit:</p>
 
 <pre><code class="JSX">function SizeSelector(props){
 	
@@ -382,6 +382,31 @@ function ProductCustomizer(props) {
 		&lt;/div&gt;
 	)
 }
+</code></pre>
+
+<h1 id="datadoorgevenvancomponentnaarcomponent">Data doorgeven van component naar component</h1>
+
+<p>Zoals eerder aangegeven kan data in React alleen maar van parent naar child worden doorgegeven en niet andersom. Daarom moest er van te voren goed gekeken worden naar de webpagina, zodat er bepaald kon worden welke componenten er nodig zijn en in welk component de benodigde data zich zal bevinden.</p>
+
+<p>De componenten van de schoenenwinkel webpagina zijn zodanig opgebouwd dat alle er een parent component is met daarin children, zoals de <code>&lt;ProductImage&gt;</code> component. De benodigde data zal dus in de parent component <code>&lt;ProductCustomizer&gt;</code> worden opgeslagen en van hieruit naar de children worden doorgegeven.
+<img src="documentatie-assets/components.jpg" alt="components" title="components" /></p>
+
+<h2 id="props">Props</h2>
+
+<p><strong>Het doorgeven van data tussen componenten</strong> doe je met props. Props kunnen van alles zijn. Denk bijvoorbeeld aan nummers, arrays, objecten, functies, strings, etc. Het meegeven van props aan een component in JSX ziet er net zo uit als het meegeven van attributen aan elementen in HTML. Je kunt deze props dan zelf namen geven.</p>
+
+<pre><code class="JSX">function ProductCustomizer(props) {
+    return (
+      &lt;div className=&quot;customizer&quot;&gt;
+        &lt;div className=&quot;product-image&quot;&gt;
+          &lt;ProductImage color=&quot;red&quot; size={8} /&gt;  &lt;!--Props worden hier meegegeven--&gt;
+        &lt;/div&gt;
+        &lt;div className=&quot;selectors&quot;&gt;
+          &lt;SizeSelector /&gt;
+        &lt;/div&gt;
+      &lt;/div&gt;
+    );
+  }
 </code></pre>
 
 </body>
