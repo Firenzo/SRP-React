@@ -133,6 +133,20 @@ function MyComponent(props){
 ```
 
 ### Component als class:
+Omdat er in deze cursus een javascript bestand ```create-react-class.js``` is geimplementeerd, is het mogelijk om je classes als volgt te schrijven:
+
+```Javascript
+var MyComponent = createReactClass({
+	render: function{
+		return React.createElement(
+			'div',
+			{className: "customizer"},
+			"Product customizer will go here"
+		)
+	}
+})
+```
+
 Je kunt componenten ook als ES6 class schrijven. Dit doe je op deze manier:
 
 ```Javascript
@@ -343,7 +357,7 @@ window.Inventory.allSizes.map(function(num){
 	)
 });
 ```
-_**LET OP:** 
+**LET OP:** 
 
 1. _Javascript Expressions in JSX worden tussen curly brackets ```{}``` gestopt. Dit geldt dus ook voor het verwijzen naar variabelen etc._
 
@@ -388,19 +402,186 @@ De componenten van de schoenenwinkel webpagina zijn zodanig opgebouwd dat alle e
 
 
 ## Props
-**Het doorgeven van data tussen componenten** doe je met props. Props kunnen van alles zijn. Denk bijvoorbeeld aan nummers, arrays, objecten, functies, strings, etc. Het meegeven van props aan een component in JSX ziet er net zo uit als het meegeven van attributen aan elementen in HTML. Je kunt deze props dan zelf namen geven.
+**Het doorgeven van data tussen componenten** doe je met props. Props kunnen van alles zijn. Denk bijvoorbeeld aan nummers, arrays, objecten, functies, strings, etc. Je kunt het ook wel zien als variabelen. Het meegeven van props aan een component in JSX ziet er net zo uit als het meegeven van attributen aan elementen in HTML. Je kunt deze props dan zelf namen geven.
 
 ```JSX
 function ProductCustomizer(props) {
     return (
       <div className="customizer">
         <div className="product-image">
-          <ProductImage color="red" size={8} />  <!--Props worden hier meegegeven-->
+          <ProductImage color="red" />  {/* <-- Een prop wordt hier meegegeven */}
         </div>
         <div className="selectors">
-          <SizeSelector />
+          <SizeSelector size={8}/> {/* <-- Een prop wordt hier meegegeven */}
         </div>
       </div>
     );
   }
 ```
+**LET OP:**
+
+1. _Bij het meegeven van een string als prop gebruik je ```""```_
+2. _Bij het meegeven van functies, nummers, en alles wat een Javascript Expression is, gebruik je curly brackets ```{}```_
+
+
+In het voorbeeld hierboven wordt de prop ```color``` meegegeven aan de component ```ProductImage``` en de prop ```size``` wordt meegegeven aan de component ```SizeSelector```. Om de prop ```size``` te gebruiken in ```SizeSelector``` kun je binnen dit component ```props.size``` gebruiken. Dit is ook de reden dat elk component dat geschreven is als functie een parameter ```props``` heeft.
+
+Hieronder wordt de ```props.size``` gebruikt om een ```defaultValue``` mee te geven aan het ```<select>``` element.
+
+
+```JSX
+function SizeSelector(props){
+	
+	//Helper function
+	function sizeOptions(){
+		...
+	}
+
+	return (
+		<div className="field-group">
+			<label htmlFor="size-options">Size:</label>
+			<select defaultValue={props.size} name="sizeOptions" id="size-options">
+				{sizeOptions()} {/*Helper function gets called*/}
+			</select>
+		</div>
+	)
+}
+```
+
+# State
+Aan een component kun je ook een state meegeven. Dit kan in het voorbeeld van de schoenenwinkel webpagina een kleur zijn die is gekozen door de gebruiker. Je kunt dan een state ```color``` meegeven waar React vervolgens iets mee doet. In dit geval de kleur van de schoen veranderen. **Om hier gebruik van te kunnen maken MOET je component niet geschreven zijn als functie, maar als class.** Het omschrijven van de ```ProductCustomizer``` component met behulp van ```create-react-class.js``` doe je als volgt:
+
+```JSX
+var ProductCustomizer = createReactClass({
+	render: function(){
+		return (
+			<div className="customizer">
+				<div className="product-image">
+					<ProductImage color="red" />
+				</div>
+				<div className="selectors">
+					<SizeSelector size={8} />
+				</div>
+			</div>
+		)
+	}
+})
+```
+Omdat er een state gebruikt zal worden, moet deze ook toegevoegd worden aan de class. in CreateReactClass doe je dit met ```getInitialState```
+
+```JSX
+var ProductCustomizer = createReactClass({
+	getInitialState: function(){
+		return {
+			color: "",
+			size: 8,
+			sizes: window.Inventory.allSizes;
+		}
+	},
+
+	render: function(){
+		return (
+			<div className="customizer">
+				<div className="product-image">
+					<ProductImage color={this.state.color} /> {/*verwijzing naar state*/}
+				</div>
+				<div className="selectors">
+					<SizeSelector size={this.state.size} sizes={this.states.sizes} /> {/*verwijzing naar state*/}
+				</div>
+			</div>
+		)
+	}
+})
+```
+
+In ```getInitialState``` zitten de states ```color```, ```size``` en ```sizes```. Het verwijzen naar een state in de render functie doe je met ```this.state.naamVanState```. Deze states kun je ook terug zien in de React Developer Tools. Deze states kun je ook hier veranderen om te kijken wat er met het component gebeurd zodra hij opnieuw rendert. Erg handig voor debugging!
+
+![state](documentatie-assets/state.jpg "state")
+
+
+## State veranderen in code
+De state kun je ook veranderen in de code. Dit is immers nodig om een applicatie te kunnen bouwen. Om in de schoenenwinkel website de state ```size```te vervangen, moet er eerst gekeken worden welke schoenmaat de gebruiker heeft gekozen. Hiervoor moet er dus een event listener gebruikt worden. Je wil weten of de gekozen schoenmaat is veranderd door de gebruiker, dus voeg je een ```onChange event``` listener toe aan het ```<select>``` element:
+
+```JSX
+<select defaultValue={props.size} name="sizeOptions" id="size-options" onChange={onSizeChange}>
+```
+
+Hierin verwijst ```{onSizeChange}``` naar een functie die nog geschreven moet worden. In deze functie komt de code die verteld wat er moet gebeuren op het moment dat de gebruiker een andere schoenmaat kiest. Deze functie wordt binnen de component ```SizeSelector``` geschreven.
+
+```Javascript
+function onSizeChange(evt){
+	//verander state
+}
+```
+
+Hier loop je tegen een klein probleempje aan. Je kunt de state namelijk niet direct vanuit deze functie veranderen. De state zit namelijk in de parent en er kan geen data van een child naar een parent worden doorgegeven, dus kan de state niet veranderd worden vanuit dit component. Om dit op te lossen kun je een functie schrijven in de parent waar de state zich bevindt, in dit geval ```ProductCustomizer```. Deze functie geef je mee als prop naar de child, in dit geval ```SizeSelector```. Vervolgens roep je in de functie ```onSizeChange``` deze prop aan.
+
+**ProductCustomizer:**
+
+```JSX
+var ProductCustomizer = createReactClass({
+    getInitialState: function() {
+      var sizes = window.Inventory.allSizes,
+        colors = window.Inventory.allColors;
+
+      return {
+        color: "red",
+        colors: colors,
+        size: 8,
+        sizes: sizes
+      };
+    },
+    
+   	// functie die de state veranderd
+    handleSizeChange: function(selectedSize){
+    	
+    	this.setState({
+    		size: selectedSize,
+    	})
+    }
+
+    render: function() {
+      return (
+        <div className="customizer">
+          <div className="product-image">
+            <ProductImage color={this.state.color} />
+          </div>
+          <div className="selectors">
+            <SizeSelector size={this.state.size} sizes={this.state.sizes} handleSizeChange={this.handleSizeChange} /> {/* de functie handleSizeChange wordt als prop meegegeven aan SizeSelector component*/}
+            <ColorSelector color={this.state.color} colors={this.state.colors} />
+          </div>
+        </div>
+      );
+    }
+  });
+```
+**SizeSelector:**
+
+```JSX
+function SizeSelector(props) {
+    function sizeOptions() {
+      return props.sizes.map(function(num) {
+        return (
+          <option value={num} key={num}>
+            {num}
+          </option>
+        );
+      });
+    }
+    
+    function onSizeChange(evt){
+    	props.handleSizeChange(evt.target.value) //functie wordt aangeroepen vanuit props en de geselecteerde waarde voor de schoenmaat wordt als nummer meegegeven als argument.
+    }
+
+    return (
+      <div className="field-group">
+        <label htmlFor="size-options">Size:</label>
+        <select defaultValue={props.size} name="sizeOptions" id="size-options" onChange={onSizeChange} value"">
+          {sizeOptions()}
+        </select>
+      </div>
+    );
+  }
+```
+
+
